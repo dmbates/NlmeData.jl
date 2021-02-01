@@ -1,0 +1,20 @@
+# The tarball with the compressed arrow-format files is in the project
+# https://osf.io/mz53d/ as the file https://osf.io/4yjvr/
+
+[Data]
+# compute this using
+# using Tar, Inflate, SHA
+# filename = "download?version=1"
+# println("sha256: ", bytes2hex(open(sha256, filename)))
+# println("git-tree-sha1: ", Tar.tree_hash(IOBuffer(inflate_gzip(filename))))
+git-tree-sha1 = "f94f73e2316e7ad71d14cebd54fa077929bd140a"
+lazy = false
+
+    [[Data.download]]
+    # this is the SHA from https://osf.io/4yjvr/download?version=1
+    sha256 = "def6054b1b60ffc285c237bdb3e2e74ef6c355b83aa8192270253824f0eee00b"
+    # when updating this, make sure to change to change the version number,
+    # because if the version number isn't included, it will always point to the
+    # latest version, which means it will break existing users when we update
+    # between releases.
+    url = "https://osf.io/4yjvr/download?version=1"
