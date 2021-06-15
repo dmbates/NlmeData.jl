@@ -9,4 +9,5 @@ using Test
     @test length(oxboys) == 4
     @test keys(oxboys) == [:subject, :age, :height, :occasion]
     @test eltype(oxboys.age) == Float64
+    @test_throws ArgumentError dataset("foo")
 end
