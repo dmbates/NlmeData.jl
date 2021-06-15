@@ -1,20 +1,21 @@
 module nlmedata
 
-using Pkg.Artifacts
+using LazyArtifacts
 import Arrow
 
 function __init__()
     global Datadir = artifact"Data"
 end
 
-cacheddatasets = Dict{String, Arrow.Table}()
+const nlmecache = Dict{String, Arrow.Table}()
+
 """
     dataset(nm)
 
 Return, as an `Arrow.Table`, the data set named `nm`, which can be a `String` or `Symbol`
 """
 function dataset(nm::AbstractString)
-    get!(cacheddatasets, nm) do
+    get!(nlmecache, nm) do
         path = joinpath(Datadir, nm * ".arrow")
         if !isfile(path)
             throw(ArgumentError(
