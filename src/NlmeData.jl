@@ -1,4 +1,4 @@
-module nlmedata
+module NlmeData
 
 using LazyArtifacts
 import Arrow
@@ -19,7 +19,7 @@ function dataset(nm::AbstractString)
         path = joinpath(Datadir, nm * ".arrow")
         if !isfile(path)
             throw(ArgumentError(
-                "Dataset \"$nm\" is not available.\nUse nlmedata.datasets() for available names."))
+                "Dataset \"$nm\" is not available.\nUse NlmeData.datasets() for available names."))
         end
         Arrow.Table(path)
     end
