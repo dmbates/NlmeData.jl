@@ -94,61 +94,6 @@ let
 end
 ```
 
-## CO2
-
-```@example longitudinal
-dataset(:CO2)
-```
-Carbon dioxide uptake in grass plants.
-- `uptake`: carbon dioxide uptake rates [μmol/m²s]
-- `plant`: plant on which the uptake is measured
-- `conc`: ambient carbon dioxide concentration [mL/L]
-- `type`: grass type - `Mississippi` or `Quebec`
-- `treatment`: `chilled` or `nonchilled`
-
-The CO₂ uptake of six plants from Quebec and six plants from Mississippi was measured at several levels of ambient CO₂ concentration.
-Half the plants of each type were chilled overnight before the experiment was conducted.
-
-#### Source
-Potvin, C., Lechowicz, M. J. and Tardif, S. (1990) “The statistical analysis of ecophysiological response curves obtained from experiments involving repeated measures”, *Ecology*, *71*, 1389-1400.
-
-```@example longitudinal
-data(dataset(:CO2)) * mapping(
-    :conc => "Ambient CO₂ concentration [mL/L]",
-    :uptake => "CO₂ uptake rate [μmol/m²s]",
-    row = :treatment,
-    col = :type,
-    color = :plant,
-) |> draw
-```
-
-## DNase
-```@example longitudinal
-dataset(:DNase)
-```
-Development of an ELISA assay for the recombinant protein DNase in rat serum
-- `density`: measured optical density [dimensionless]
-- `conc`: concentration of the protein
-- `run`: assay run
-
-#### Source
-Davidian, M. and Giltinan, D. M. (1995) *Nonlinear Models for Repeated Measurement Data*, Chapman & Hall (section 5.2.4, p. 134)
-
-```@example longitudinal
-let dnase = dataset(:DNase)
-    r = renamer([s => s for s in levels(dnase.run)])
-    plt = data(dnase) *
-        mapping(
-            :conc => "Concentration of the protein DNase",
-            :density => "Measured optical density",
-            marker=(:run => r => "Run"),
-            color=(:run => r => "Run"),
-        ) *
-    (visual(Lines) + visual(Scatter))
-    draw(plt)
-end
-```
-
 ## Orange
 ```@example longitudinal
 dataset(:Orange)
