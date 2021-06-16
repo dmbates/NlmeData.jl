@@ -16,6 +16,8 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
+        "Repeated measures" => "repeated.md",
+        "Longitudinal data sets" => "longitudinal.md"
     ],
 )
 

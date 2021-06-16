@@ -9,9 +9,8 @@ Documentation for [NlmeData](https://github.com/dmbates/NlmeData.jl).
 This package provides the data sets from the `nlme` package for [`R`](https://www.r-project.org) as [`Arrow`](https://github.com/JuliaData/Arrow.jl)
 files.
 
-There are only two functions, `datasets` and `dataset` exported from this package.
-```@index
-```
+There are only two functions, `datasets` and `dataset`, defined, but not exported, in this package.
+The reason they are not exported is so that the names do not conflict with similar names in other packages.
 
 ```@autodocs
 Modules = [NlmeData]
@@ -32,13 +31,13 @@ the response is `travel` and the grouping factor is `rail`.
 
 
 Frequently there are other covariates recorded.
-For example, in the longitudinal data sets one of the covariates will represent the time of the observation.
+For example, in a longitudinal data set one of the covariates will represent the time of the observation.
 ```@example Main
 dataset(:Orange)
 ```
 
 A convenient way to view an individual dataset is to create a `GroupedDataFrame` with `DataFrames.groupby`.
-(`DataFrames` is not a dependency of `NlmeData` - so as to avoid a heavyweight dependency.)
+(`DataFrames` is not a dependency of `NlmeData` - so as to avoid a heavyweight dependency.  You must attach it separately.)
 ```@example Main
 using DataFrames
 groupby(DataFrame(dataset(:Orange)), :tree)
