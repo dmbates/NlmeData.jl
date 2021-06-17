@@ -44,7 +44,7 @@ end
 dataset(:Cefamandole)
 ```
 Pharmacokinetics of cefamandole
-- `conc`: observed plasma concentration of cefamandole [μg/ml]
+- `conc`: observed plasma concentration of cefamandole [μg/mL]
 - `subject`: subject on which the sample was drawn
 - `time`: time at which the sample was drawn (minutes post-injection)
 
