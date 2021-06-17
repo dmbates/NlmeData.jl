@@ -121,7 +121,7 @@ Vonesh, E. F. and Carter, R. L. (1992), *Mixed-effects nonlinear regression for 
 describe data on high-flux hemodialyzers to asses their *in-vivo* ultrafiltration characteristics.
 
 The ultrafiltration rates (in mL/hr) of 20 high-flux dialyzers were measured at seven different transmembrane pressures (in dmHg).
-The _in vitro_ evaluation of the dialyzers used bovine blood at flow rates of either 200 dl/min or 300 dl/min.
+The _in vitro_ evaluation of the dialyzers used bovine blood at flow rates of either 200 dL/min or 300 dL/min.
 
 ```@example repeated
 let dial = dataset(:Dialyzer)
