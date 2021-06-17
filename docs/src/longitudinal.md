@@ -31,7 +31,7 @@ let
     plt = data(dataset(:BodyWeight)) *
         mapping(
             :time => "Time in the experiment [days]",
-            :weight => "Body weight [gm]",
+            :weight => "Body weight [g]",
             color = :rat,
             col = :diet,
         )
