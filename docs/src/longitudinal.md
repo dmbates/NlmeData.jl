@@ -14,7 +14,7 @@ using DataFrames
 dataset(:BodyWeight)
 ```
 Rat weight over time for different diets
-- `weight`: body weight [gm]
+- `weight`: body weight [g]
 - `rat`: indicator of the rat being weighed
 - `time`: time in the experiment [days]
 - `diet`: one of three diets that the rat receives
