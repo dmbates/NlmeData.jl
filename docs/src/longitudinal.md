@@ -56,7 +56,7 @@ Plasma concentrations of the drug were measured on six healthy volunteers at 14 
 let plt = data(dataset(:Cefamandole)) *
     mapping(
         :time => "Time of sample (minutes post-injection)",
-        :conc => "Plasma concentration of cefamandole [μg/ml]",
+        :conc => "Plasma concentration of cefamandole [μg/mL]",
         color = :subject,
     )
     layers = visual(Lines) + visual(Scatter) * mapping(marker = :subject)
