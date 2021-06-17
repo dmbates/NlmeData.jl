@@ -69,7 +69,7 @@ end
 dataset(:ChickWeight)
 ```
 Effect of diet on early growth of chicks
-- `weight`: body weight [gm]
+- `weight`: body weight [g]
 - `chick`: indicator of the chick being weighed
 - `time`: time since hatching [days]
 - `diet`: indicator of the diet for the chick
