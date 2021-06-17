@@ -86,7 +86,7 @@ let
     plt = data(dataset(:ChickWeight)) *
         mapping(
             :time => "Time since hatching [days]",
-            :weight => "Body weight [gm]",
+            :weight => "Body weight [g]",
             color = :chick,
             col = :diet,
         )
