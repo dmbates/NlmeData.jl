@@ -37,7 +37,7 @@ dataset(:Orange)
 ```
 
 A convenient way to view an individual dataset is to create a `GroupedDataFrame` with `DataFrames.groupby`.
-(`DataFrames` is not a dependency of `NlmeData` - so as to avoid a heavyweight dependency.  You must attach it separately.)
+(`DataFrames` is not a dependency of `NlmeData` - so as to avoid a heavyweight dependency.  You must load it separately.)
 ```@example Main
 using DataFrames
 groupby(DataFrame(dataset(:Orange)), :tree)
