@@ -9,6 +9,7 @@ In the descriptions of these data sets we always list the *response* first and t
 using NlmeData: dataset, datasets
 using CairoMakie
 using AlgebraOfGraphics
+using DataFrames
 ```
 
 ## Alfalfa
@@ -77,8 +78,8 @@ data(dataset(:CO2)) * mapping(
     :uptake => "CO₂ uptake rate [μmol/m²s]",
     row = :treatment,
     col = :type,
-    color = :plant,
-) |> draw
+    color = :plant => "Plant",
+) * (visual(Lines) + visual(Scatter)) |> draw
 ```
 
 ## DNase
@@ -136,6 +137,97 @@ let dial = dataset(:Dialyzer)
         )
     plt * (visual(Lines) + visual(Scatter)) |> draw
 end
+```
+
+## Earthquake
+```@example repeated
+dataset(:Earthquake)
+```
+- `accel`: maximum horizontal acceleration observed [g]
+- `quake`: indicator of the earthquake on which the measurements were made
+- `richter`: intensity of the earthquake on the Richter scale
+- `distance`: distance of the seismological measuring station to the epicenter of the earthquake [km]
+- `soil`: soil condition at the measuring station
+
+Measures of earthquake intensity
+
+#### Source:
+Joyner and Boore (1981), *Peak horizontal acceleration and velocity from strong-motion records including records from the 1979 Imperial Valley, California, earthquake*, *Bulletin of the Seismological Society of America*, *71*, 2011-2038.
+
+```@example repeated
+data(dataset(:Earthquake)) *
+mapping(
+    :accel => "Maximum horizontal acceleration [g]",
+    :distance => "Distance from epicenter [km]",
+    color = :quake => "Quake",
+) * (visual(Lines) + visual(Scatter)) |> draw
+```
+
+## Fatigue
+```@example repeated
+dataset(:Fatigue)
+```
+- `rellength`: relative crack length [dimensionless]
+- `path`: test path (i.e. test unit) identifier
+- `cycles`: number of test cycles at which the measurement was made (millions of cycles)
+
+These relative length of cracks in metal for 21 test units.
+An initial notch of length 0.90 inches was made on each unit which then was subjected to several thousand test cycles.
+After every 10,000 test cycles the crack length was measured.
+Testing was stopped if the crack length exceeded 1.60 inches, defined as a failure, or at 120,000 cycles.
+
+Source:
+These data are given in Lu and Meeker (1993) where they state ``We obtained the data in Table 1 visually from figure 4.5.2 on page 242 of Bogdanoff and Kozin (1985).''
+
+Lu, C. Joséph , and Meeker, William Q. (1993), *Using degradation measures to estimate a time-to-failure distribution*, *Technometrics*, *35*, 161-174
+
+This plot shows the data from 3 of the 21 test units.
+
+```@example repeated
+let datsub = filter(:path => in(["10", "15", "20"]), DataFrame(dataset(:Fatigue)))
+    data(datsub) *
+        mapping(
+            :cycles => "Test cycles (millions)",
+            :rellength => "Relative crack length",
+            col = :path,
+        ) * (visual(Lines) + visual(Scatter)) |> draw
+end
+```
+
+## Gasoline
+```@example repeated
+dataset(:Gasoline)
+```
+- `yield`: percentage of crude oil converted to gasoline after distillation and fractionation
+- `sample`: (inferred) crude oil sample number
+- `endpoint`: temperature at which the gasoline is vaporized [°F]
+- `vapor`: vapor pressure of the crude oil [lbf/in²]
+- `api`: crude oil gravity [° API]
+- `astm`: crude oil 10% point ASTM - the temperature at which 10% of the crude has become vapor.
+
+Refinery yield of gasoline.
+
+Prater (1955) provides data on crude oil properties and gasoline yields.
+Atkinson (1985) uses these data to illustrate the use of diagnostics in multiple regression analysis.
+Three of the covariates - `api`, `vapor`, and `astm` - measure characteristics of the crude oil used to produce the gasoline.
+The other covariate - `endpoint` - is a characteristic of the refining process.
+Daniel and Wood (1980) notice that the covariates characterizing the crude oil occur in only ten distinct groups and conclude that the data represent responses measured on ten different crude oil samples.
+
+#### Source
+Prater, N. H. (1955), *Estimate gasoline yields from crudes*, *Petroleum Refiner*, *35* (5).
+
+Atkinson, A. C. (1985), *Plots, Transformations, and Regression*, Oxford Press.
+
+Daniel, C. and Wood, F. S. (1980), *Fitting Equations to Data*, Wiley.
+
+The data from samples 3 to 6 are shown below
+```@example repeated
+data(filter(:sample => in(string.(3:6)), DataFrame(dataset(:Gasoline)))) *
+mapping(
+    :endpoint => "Temp at which gasoline is vaporized [°F]",
+    :yield => "Yield of gasoline after distillation and fractionation [% of crude]",
+    col = :sample,
+) * (visual(Lines) + visual(Scatter)) |> draw
 ```
 
 ## Rail

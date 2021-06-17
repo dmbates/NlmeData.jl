@@ -32,7 +32,7 @@ let
         mapping(
             :time => "Time in the experiment [days]",
             :weight => "Body weight [g]",
-            color = :rat,
+            color = :rat => "Rat",
             col = :diet,
         )
     draw(plt)
@@ -53,15 +53,13 @@ Davidian, M. and Giltinan, D. M. (1995), *Nonlinear Models for Repeated Measurem
 Plasma concentrations of the drug were measured on six healthy volunteers at 14 time points following an intraveneous dose of 15 mg/kg body weight of cefamandole.
 
 ```@example longitudinal
-let plt = data(dataset(:Cefamandole)) *
+data(dataset(:Cefamandole)) *
     mapping(
         :time => "Time of sample (minutes post-injection)",
         :conc => "Plasma concentration of cefamandole [μg/mL]",
-        color = :subject,
-    )
-    layers = visual(Lines) + visual(Scatter) * mapping(marker = :subject)
-    plt * layers |> draw
-end
+        color = :subject => "Subject",
+        marker = :subject => "Subject",
+    ) * (visual(Lines) + visual(Scatter)) |> draw
 ```
 
 ## ChickWeight
@@ -82,16 +80,14 @@ There were four groups on chicks on different protein diets.
 Hand, D. and Crowder, M. (1996), *Practical Longitudinal Data Analysis*, Chapman and Hall (table A.2)
 
 ```@example longitudinal
-let
-    plt = data(dataset(:ChickWeight)) *
-        mapping(
-            :time => "Time since hatching [days]",
-            :weight => "Body weight [g]",
-            color = :chick,
-            col = :diet,
-        )
-    draw(plt)
-end
+data(dataset(:ChickWeight)) *
+    mapping(
+        :time => "Time since hatching [days]",
+        :weight => "Body weight [g]",
+        color = :chick => "Chick",
+        marker = :chick => "Chick",
+        col = :diet,
+    ) * (visual(Lines) + visual(Scatter)) |> draw
 ```
 
 ## Orange
@@ -108,14 +104,12 @@ Draper, N. R. and Smith, H. (1998), *Applied Regression Analysis (3rd ed)*, Wile
 See also Appendix A.16 of Pinheiro and Bates (2000), *Mixed-Effects Models in S and S-PLUS*, Springer for details.
 
 ```@example longitudinal
-let 
-    axis = (width=800, height=450)
-    plt = data(dataset(:Orange)) * 
-        mapping(
-            :age => "Age [days]",
-            :circumference => "Circumference at breast height [cm]",
-            color=:tree,
-            )
-    draw(plt; axis)
-end
+data(dataset(:Orange)) * 
+    mapping(
+        :age => "Age [days]",
+        :circumference => "Circumference at breast height [cm]",
+        color=:tree => "Tree",
+        marker=:tree => "Tree",
+        ) *
+    (visual(Lines) + visual(Scatter)) |> draw
 ```
