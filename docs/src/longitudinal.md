@@ -90,6 +90,53 @@ data(dataset(:ChickWeight)) *
     ) * (visual(Lines) + visual(Scatter)) |> draw
 ```
 
+## Glucose
+```@example longitudinal
+dataset(:Glucose)
+```
+- `subject`:
+- `conc`: concentration of glucose [units not given]
+- `time`: time since meal [units not given but probably hr]
+- `meal`: time of day of the meal
+
+Glucose levels over time
+
+#### Source
+Hand, D. and Crowder, M. (1996), *Practical Longitudinal Data Analysis*, Chapman and Hall
+
+The data for the first subject (out of 6) is shown below
+```@example longitudinal
+data(filter(:subject => ==("1"), DataFrame(dataset(:Glucose)))) *
+mapping(
+    :time => "Time since meal",
+    :conc => "Glucose concentration",
+    color = :meal => "Meal time",
+) * (visual(Lines) + visual(Scatter)) |> draw
+```
+
+## Glucose2
+```@example longitudinal
+dataset(:Glucose2)
+```
+- `glucose`: blood glucose level [mg/dL]
+- `subject`:
+- `time`: time since alcohol injestion [min/10]
+- `date`: the experiment was repeated on two different dates
+
+Glucose levels following alcohol injestion
+
+Hand and Crowder (Table A.14, pp. 180-181, 1996) describe data on the blood glucose levels measured at 14 time points over 5 hours  for 7 volunteers who took alcohol at time 0.
+The same experiment was repeated on a second date with the same subjects but with a dietary additive used for all subjects.
+
+The data for the first subject (out of 7) is shown below
+```@example longitudinal
+data(filter(:subject => ==("1"), DataFrame(dataset(:Glucose2)))) *
+mapping(
+    :time => "Time since meal [min/10]",
+    :glucose => "Glucose concentration [mg/dL]",
+    color = :date => "Date",
+) * (visual(Lines) + visual(Scatter)) |> draw
+```
 ## Orange
 ```@example longitudinal
 dataset(:Orange)

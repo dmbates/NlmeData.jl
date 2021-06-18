@@ -157,8 +157,8 @@ Joyner and Boore (1981), *Peak horizontal acceleration and velocity from strong-
 ```@example repeated
 data(dataset(:Earthquake)) *
 mapping(
-    :accel => "Maximum horizontal acceleration [g]",
     :distance => "Distance from epicenter [km]",
+    :accel => "Maximum horizontal acceleration [g]",
     color = :quake => "Quake",
 ) * (visual(Lines) + visual(Scatter)) |> draw
 ```
@@ -228,6 +228,29 @@ mapping(
     :yield => "Yield of gasoline after distillation and fractionation [% of crude]",
     col = :sample,
 ) * (visual(Lines) + visual(Scatter)) |> draw
+```
+## Gun
+```@example repeated
+dataset(:Gun)
+```
+- `rounds`: number of rounds per minute fired
+- `team`: team loading and firing rounds
+- `method`: one of two methods for loading
+- `physique`: physique of the team
+
+Data from a comparison of methods for firing naval guns.
+
+#### Source
+
+Hicks (p.180, 1993) reports data from an experiment on methods for firing naval guns.
+Gunners of three different physiques (slight, average, and heavy) tested two firing methods.
+Both methods were tested twice by each of nine teams of three gunners with identical physique.
+The response was the number of rounds fired per minute.
+
+Hicks, C. R. (1993), *Fundamental Concepts in the Design of Experiments (4th ed)*, Harcourt Brace, New York.
+
+```@example repeated
+groupby(DataFrame(dataset(:Gun)), :team)
 ```
 
 ## Rail
