@@ -27,16 +27,14 @@ There are three groups of rats, each on a different diet.
 Hand, D. and Crowder, M. (1996), *Practical Longitudinal Data Analysis*, Chapman and Hall
 
 ```@example longitudinal
-let
-    plt = data(dataset(:BodyWeight)) *
-        mapping(
-            :time => "Time in the experiment [days]",
-            :weight => "Body weight [g]",
-            color = :rat => "Rat",
-            col = :diet,
-        )
-    draw(plt)
-end
+data(dataset(:BodyWeight)) *
+    mapping(
+        :time => "Time in the experiment [days]",
+        :weight => "Body weight [g]",
+        color=:rat => "Rat",
+        marker=:rat => "Rat", 
+        col = :diet,
+    ) * (visual(Lines) + visual(Scatter)) |> draw
 ```
 
 ## Cefamandole
@@ -137,6 +135,81 @@ mapping(
     color = :date => "Date",
 ) * (visual(Lines) + visual(Scatter)) |> draw
 ```
+
+## IGF
+```@example longitudinal
+dataset(:IGF)
+```
+- `lot`: radioactive tracer lot
+- `age`: age of the radioactive tracer [days]
+- `conc`: estimated concentration of IGF-I protein [ng/mL]
+
+Radioimmunoassay of IGF-I protein
+
+Source:
+Davidian and Giltinan (1995), *Nonlinear Models for Repeated Measures Data*, Chapman and Hall describe data obtained during quality control radioimmunoassays for ten different lots of radioactive tracer used to calibrate the Insulin-like Growth Factor (IGF-I) protein concentration measurements.
+
+```@example longitudinal
+data(dataset(:IGF)) * 
+    mapping(
+        :age => "Age [days]",
+        :conc => "Concentration of IGF-I protein [ng/mL]",
+        color=:lot => "Lot",
+        marker=:lot => "Lot",
+        ) *
+    (visual(Lines) + visual(Scatter)) |> draw
+```
+
+## Indometh
+```@example longitudinal
+dataset(:Indometh)
+```
+- `subject`: subject code
+- `time`: time post injection at which blood sample was drawn [hr]
+- `conc`: plasma concentration of indomethacin [μg/mL]
+
+Pharmacokinetics of Indomethacin
+
+#### Source
+
+Kwan, Breault, Umbenhauer, McMahon and Duggan (1976) "Kinetics of Indomethacin absorption, elimination, and enterohepatic circulation in man."  *Journal of Pharmacokinetics and Biopharmaceutics* *4*, 255-280.
+
+```@example longitudinal
+data(dataset(:Indometh)) * 
+    mapping(
+        :time => "Time post injection [hr]",
+        :conc => "Plasma concentration of Indomethacin [μg/mL]",
+        color=:subject => "Subject",
+        marker=:subject => "Subject",
+        ) * 
+    (visual(Lines) + visual(Scatter)) |> draw
+```
+
+## Loblolly
+```@example longitudinal
+dataset(:Loblolly)
+```
+- `seed`: seed source for the tree
+- `age`: age of the tree [yr]
+- `conc`: height of the tree [ft]
+
+Growth of Loblolly pine trees
+
+#### Source
+
+Kung, F. H. (1986), *Fitting logistic growth curve with predetermined carrying capacity*, in *Proceedings of the Statistical Computing Section*, American Statistical Association, 340-343.
+
+```@example longitudinal
+data(dataset(:Loblolly)) * 
+    mapping(
+        :age => "Age of tree [yr]",
+        :height => "Height of tree [ft]",
+        color=:seed => "Seed",
+        marker=:seed => "Seed",
+        ) *
+    (visual(Lines) + visual(Scatter)) |> draw
+```
+
 ## Orange
 ```@example longitudinal
 dataset(:Orange)

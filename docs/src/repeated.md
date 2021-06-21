@@ -253,6 +253,67 @@ Hicks, C. R. (1993), *Fundamental Concepts in the Design of Experiments (4th ed)
 groupby(DataFrame(dataset(:Gun)), :team)
 ```
 
+## Machines
+
+```@example repeated
+dataset(:Machines)
+```
+- `score`: a productivity score
+- `worker`: 
+- `machine`: 
+
+Productivity scores on different workers using one of three brands of machine.
+
+ Data on an experiment to compare three brands of machines used in an industrial process are presented in Milliken and Johnson (p. 285, 1992).
+ Six workers were chosen randomly among the employees of a factory to operate each machine three times.
+ The response is an overall productivity score taking into account the number and quality of components produced.
+
+#### Source:
+
+ Milliken, G. A. and Johnson, D. E. (1992), *Analysis of Messy Data, Volume I: Designed Experiments*, Chapman and Hall
+
+```@example repeated
+data(dataset(:Machines)) * mapping(:machine=>"Machine", :score, col=:worker) |> draw
+```
+
+## MathAchieve and MathAchSchool
+```@example repeated
+dataset(:MathAchieve)
+```
+- `school`: school that the student attends
+- `MathAch`: mathematics achievement score
+- `minority`: `Yes` if the student is a member of a minority racial group, otherwise `No`
+- `sex`: the student's sex, `Female` or `Male`
+- `ses`: a measure of socio-economic status
+
+Further characteristics of the school are given in
+
+```@example repeated
+dataset(:MathAchSchool)
+```
+- `school`:
+- `size`: number of students in the school
+- `sector`: `Public` or `Catholic`
+- `pracad`: proportion of students on the academic track
+- `disclim`: a measure of the discrimination climate in the area where the school's students live
+- `himinty`: a binary indicator of high minority population
+- `meanses`: mean socio-economic status score for the school
+
+Mathematics achievement within schools
+
+For analysis the two tables would be combined using a left-join, as in
+```@example repeated
+combined = leftjoin(
+    DataFrame(dataset(:MathAchieve)),
+    DataFrame(dataset(:MathAchSchool)),
+    on=:school,
+    makeunique=true);
+first(combined, 10)
+```
+```@example repeated
+last(combined, 10)
+```
+
 ## Rail
 
 ```@example repeated
