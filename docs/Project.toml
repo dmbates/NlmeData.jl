@@ -1,7 +1,12 @@
 [deps]
+AlgebraOfGraphics = "cbdf2221-f076-402e-a563-3d30da359d67"
+CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 NlmeData = "fdf73e9b-dfac-4a1a-bc04-5d360d62932c"
 
 [compat]
-Documenter = "0.26"
+AlgebraOfGraphics = "0.4"
+CairoMakie = "0.5"
+DataFrames = "1"
+Documenter = "0.27"

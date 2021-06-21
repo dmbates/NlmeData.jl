@@ -29,7 +29,7 @@ dataset(nm::Symbol) = dataset(string(nm))
 """
     datasets()
 
-Return a vector of names of the available test data sets
+Return a vector of names of the available data sets
 """
 datasets() = first.(Base.Filesystem.splitext.(filter(endswith(".arrow"), readdir(Datadir))))
 
